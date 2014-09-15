@@ -1,0 +1,31 @@
+<script>
+function Animal(name, speed, focus) {
+this.gap = 0;
+this.name = name;
+this.speed = speed;
+this.focus = focus;
+this.position = 0;
+this.isFocused = function () {
+    return Math.floor(Math.random() * 10) < this.focus - this.gap;
+    }
+    this.advance = function() {
+	if (this.isFocused ()) {
+	    this.position += this.speed;
+	    }
+	}
+    this.progressReport = function() {
+	return this.name + " is at: " + this.position
+	}
+    }
+var rabbit = new Animal ("Rocky", 6, 3);
+var turtle = new Animal ("Myrtle", 3, 10);
+var meters = 100;
+
+while (rabbit.position < meters && turtle.position < meters) {
+    rabbit.advance();
+    turtle.advance();
+    rabbit.gap = rabbit.position - turtle.position;
+    turtle.gap = turtle.position - rabbit.position;
+    alert(rabbit.progressReport() + " -- " + turtle.progressReport());
+}
+</script>
